@@ -1,20 +1,25 @@
 /*
 This is empty on purpose! Your code to build the resume will go here.
+Sanoob thekke Valappil
+
  */
 $("#main").append("Sanoob");
-var awesome = "iam awesome ";
 console.log(awesome);
-var fun = awesome.replace("awesome", "fun");
-console.log(fun);
+
+//appending some data to the page
+
+
 var name = "Sanoob ThekkeValappil"
 var role = "Developer"
+//replace the %data% from helper.js, after replacing append it to the index.html page on header
 var formattedNmae = HTMLheaderName.replace("%data%", name)
-
 var formattedrole = HTMLheaderRole.replace("%data%", role)
+
 $('#header').prepend(formattedrole);
 $('#header').prepend(formattedNmae);
 
-
+//create JSON sample objects.
+//the bio object
 var bio = {
     "name": "Sanoob Thekke Valappil",
     "age": 25,
@@ -28,19 +33,20 @@ var bio = {
     "skills": ["set of skills", "skillset2", "skillset3"],
     "pictureurl": "./images/fry.jpg"
 };
+
+// replace %data% in helper.js with corresponding fields and append it to the dic section in index.html
 var fphone = HTMLmobile.replace("%data%", bio.contacts.phone);
 var email = HTMLemail.replace("%data%", bio.contacts.email);
-//var location = HTMLemail.replace("%data%", bio.contacts.location);
 var description = HTMLwelcomeMsg.replace("%data%", bio.contacts.description);
 var url = HTMLbioPic.replace("%data%", bio.pictureurl);
+
 $('#topContacts').prepend(fphone);
 $('#topContacts').prepend(email);
-//$('#topContacts').prepend(location);
 $('#topContacts').prepend(description);
+//profile pic append in header for better layout.
 $('#header').append(url);
 
-
-
+//the work object
 var work = {
     "jobs": [{
             "position": "Research Assitant",
@@ -69,6 +75,7 @@ var work = {
         }
     ]
 };
+//the project object
 var projects = {
     "project": [{
         "title": "Title1",
@@ -86,7 +93,10 @@ var projects = {
 
 
 };
-
+// creating a function display for object projects
+//creating an encapsulation function
+//js treats functions as objects. so create a display function for the project object.
+//holding the display function inside the project object
 projects.display = function() {
 
     for (proj in projects.project) {
@@ -99,7 +109,7 @@ projects.display = function() {
         $(".project-entry:last").append(formattedDescription);
     }
 }
-
+//the education object
 var education = {
 
     "schools": [{
@@ -116,7 +126,7 @@ var education = {
 };
 
 
-
+//appending the skills on to the main page. using an IF statement to check the length
 if (bio.skills.length > 0) {
     $('#header').append(HTMLskillsStart);
     for (var i = 0; i < bio.skills.length; i++) {
@@ -124,7 +134,8 @@ if (bio.skills.length > 0) {
         $('#skills').prepend(formattedskill);
     }
 }
-
+// a normal function to display all the work experience.
+//not encapsulated
 function displayWork() {
     for (i in work.jobs) {
 
@@ -142,14 +153,15 @@ function displayWork() {
 
     }
 }
+//calling the function DisplayWork
 displayWork();
-
+//a sample script added to track if mouse events were listening.
 $(document).click(function(loc) {
     var x = loc.pageX;
     var y = loc.pageY;
     logClicks(x, y);
 });
-
+// trying out string functions. when the button is clicked the name format is changed to Sanoob THEKKEVALAPPIL
 function inName() {
     var array = [];
     array = name.trim().split(" ");
@@ -159,5 +171,8 @@ function inName() {
     return (array[0] + " " + array[1]);
 }
 $("#main").append(internationalizeButton);
+//calling the projects.display function.
 projects.display();
+//activating the map data, all the objects are traversed in the helper.js
+//locations from all the objects are stored in to an array, and displayed on the map.
 $('#mapDiv').append(googleMap);
